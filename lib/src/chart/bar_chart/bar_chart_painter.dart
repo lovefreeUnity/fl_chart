@@ -380,6 +380,8 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
       tooltipWidth,
       tooltipHeight,
     );
+    
+    Rect toolTipUnderLineRect = Rect.fromPoints(Offset(barOffset.dx,barTopY), Offset(barOffset.dx,tooltipTop + tooltipHeight));
 
     if (tooltipData.fitInsideHorizontally) {
       if (rect.left < 0) {
@@ -463,6 +465,7 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
       angle: rotateAngle,
       drawCallback: () {
         canvasWrapper
+          ..drawRect(toolTipLineRect,_borderTouchTooltipPaint)
           ..drawRRect(roundedRect, _bgTouchTooltipPaint)
           ..drawRRect(roundedRect, _borderTouchTooltipPaint)
           ..drawText(tp, drawOffset);
