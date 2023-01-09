@@ -465,7 +465,7 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
       angle: rotateAngle,
       drawCallback: () {
         canvasWrapper
-          ..drawRect(toolTipLineRect,_borderTouchTooltipPaint)
+          ..drawRect(toolTipUnderLineRect,_borderTouchTooltipPaint)
           ..drawRRect(roundedRect, _bgTouchTooltipPaint)
           ..drawRRect(roundedRect, _borderTouchTooltipPaint)
           ..drawText(tp, drawOffset);
