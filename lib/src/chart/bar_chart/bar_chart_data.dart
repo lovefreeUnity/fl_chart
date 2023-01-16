@@ -308,7 +308,7 @@ class BarChartRodData with EquatableMixin {
   /// ```
   BarChartRodData({
     double? fromY,
-    required this.toY,
+    double?.toY ?? 0,
     Color? color,
     this.gradient,
     double? width,
