@@ -308,7 +308,7 @@ class BarChartRodData with EquatableMixin {
   /// ```
   BarChartRodData({
     double? fromY,
-    double?.toY ?? 0,
+    double?.toY,
     Color? color,
     this.gradient,
     double? width,
@@ -317,6 +317,7 @@ class BarChartRodData with EquatableMixin {
     BackgroundBarChartRodData? backDrawRodData,
     List<BarChartRodStackItem>? rodStackItems,
   })  : fromY = fromY ?? 0,
+        toY = toY ?? 0,
         color =
             color ?? ((color == null && gradient == null) ? Colors.cyan : null),
         width = width ?? 8,
