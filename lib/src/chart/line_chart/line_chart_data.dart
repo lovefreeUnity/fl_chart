@@ -1770,6 +1770,7 @@ class LineTooltipItem with EquatableMixin {
     this.textAlign = TextAlign.center,
     this.textDirection = TextDirection.ltr,
     this.children,
+    this.showTooltipOnTopOfDot = true,
   });
 
   /// Showing text.
@@ -1786,7 +1787,11 @@ class LineTooltipItem with EquatableMixin {
 
   /// List<TextSpan> add further style and format to the text of the tooltip
   final List<TextSpan>? children;
-
+  
+  ///showTooltipOnTopOfDot is true Tooltip is draw Top of the Dot
+  ///if showTooltipOnTopOfDot is false tooltip is draw down of the Dot
+  final bool showTooltipOnTopOfDot;
+  
   /// Used for equality check, see [EquatableMixin].
   @override
   List<Object?> get props => [
