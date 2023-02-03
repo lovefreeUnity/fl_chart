@@ -8,7 +8,7 @@ import 'package:fl_chart/src/extensions/color_extension.dart';
 import 'package:fl_chart/src/extensions/gradient_extension.dart';
 import 'package:fl_chart/src/utils/lerp.dart';
 import 'package:flutter/material.dart' hide Image;
-import 'package:fl_chart/src/chart/line_chart/tooltip_mode';
+import 'package:fl_chart/src/chart/line_chart/tooltip_mode.dart';
 /// [LineChart] needs this class to render itself.
 ///
 /// It holds data needed to draw a line chart,
