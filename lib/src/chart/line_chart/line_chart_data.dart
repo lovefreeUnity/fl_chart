@@ -8,7 +8,7 @@ import 'package:fl_chart/src/extensions/color_extension.dart';
 import 'package:fl_chart/src/extensions/gradient_extension.dart';
 import 'package:fl_chart/src/utils/lerp.dart';
 import 'package:flutter/material.dart' hide Image;
-
+import 'package:fl_chart/src/chart/line_chart/tooltip_mode';
 /// [LineChart] needs this class to render itself.
 ///
 /// It holds data needed to draw a line chart,
@@ -1873,8 +1873,4 @@ class LineChartDataTween extends Tween<LineChartData> {
   /// Lerps a [LineChartData] based on [t] value, check [Tween.lerp].
   @override
   LineChartData lerp(double t) => begin!.lerp(begin!, end!, t);
-}
-enum TooltipMode {
-  top,
-  bottom;
 }
