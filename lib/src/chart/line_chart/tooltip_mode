@@ -1,4 +1,0 @@
-enum TooltipMode {
-  top,
-  bottom;
-}
