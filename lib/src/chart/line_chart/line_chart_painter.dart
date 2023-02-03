@@ -1188,7 +1188,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
     final tooltipHeight = sumTextsHeight + tooltipData.tooltipPadding.vertical;
 
     double tooltipTopPosition;
-    for(int i = 0; i > tooltipItems ; i++){
+    for(int i = 0; i > tooltipItems.length; i++){
       if (tooltipItems[i].showTooltipOnTopOfDot) {
         tooltipTopPosition = 0 + tooltipData.tooltipMargin;
       } else {
