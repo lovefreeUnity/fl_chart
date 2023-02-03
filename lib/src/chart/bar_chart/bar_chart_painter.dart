@@ -369,10 +369,8 @@ class BarChartPainter extends AxisChartPainter<BarChartData> {
     final drawTooltipOnTop = tooltipData.direction == TooltipDirection.top ||
         (tooltipData.direction == TooltipDirection.auto &&
             showOnRodData.isUpward());
-    
-    final tooltipTop = drawTooltipOnTop
-        ? barTopY - tooltipHeight - tooltipData.tooltipMargin
-        : 0.0 + tooltipData.tooltipMargin + tooltipHeight;
+    //0일 때 맨위로 간다. 숫자가 클수록 아래로 내려간다.
+    final tooltipTop = 0.0 + tooltipData.tooltipMargin;
 
     /// draw the background rect with rounded radius
     // ignore: omit_local_variable_types
