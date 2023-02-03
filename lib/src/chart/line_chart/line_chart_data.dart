@@ -1622,7 +1622,7 @@ class LineTouchTooltipData with EquatableMixin {
     GetLineTooltipItems? getTooltipItems,
     bool? fitInsideHorizontally,
     bool? fitInsideVertically,
-    bool? showOnTopOfTheDot,
+    bool? showOnTopOfTheChartBoxArea,
     double? rotateAngle,
     BorderSide? tooltipBorder,
   })  : tooltipBgColor = tooltipBgColor ?? Colors.blueGrey.darken(15),
@@ -1634,7 +1634,7 @@ class LineTouchTooltipData with EquatableMixin {
         getTooltipItems = getTooltipItems ?? defaultLineTooltipItem,
         fitInsideHorizontally = fitInsideHorizontally ?? false,
         fitInsideVertically = fitInsideVertically ?? false,
-        showOnTopOfTheChartBoxArea = showOnTopOfTheDot ?? false,
+        showOnTopOfTheChartBoxArea = showOnTopOfTheChartBoxArea ?? false,
         rotateAngle = rotateAngle ?? 0.0,
         tooltipBorder = tooltipBorder ?? BorderSide.none,
         super();
