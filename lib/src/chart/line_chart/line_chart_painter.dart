@@ -1133,11 +1133,15 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       throw Exception('tooltipItems and touchedSpots size should be same');
     }
 
+    
+    TooltipMode? getTooltipMode;
     for (var i = 0; i < showingTooltipSpots.showingSpots.length; i++) {
       final tooltipItem = tooltipItems[i];
       if (tooltipItem == null) {
         continue;
       }
+      
+      getTooltipMode = tooltipItem.tooltipMode;
 
       final span = TextSpan(
         style: Utils().getThemeAwareTextStyle(context, tooltipItem.textStyle),
@@ -1189,7 +1193,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
 
     double tooltipTopPosition;
     
-     if (tooltipItems[i].showTooltipOnTopOfDot) {
+     if (getTooltipMode == TooltipMode.top) {
         tooltipTopPosition = 0 + tooltipData.tooltipMargin;
      } else {
         tooltipTopPosition =
