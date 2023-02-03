@@ -1770,7 +1770,7 @@ class LineTooltipItem with EquatableMixin {
     this.textAlign = TextAlign.center,
     this.textDirection = TextDirection.ltr,
     this.children,
-    this.showTooltipOnTopOfDot = true,
+    this.showTooltipMode = TooltipMode.top,
   });
 
   /// Showing text.
@@ -1788,9 +1788,7 @@ class LineTooltipItem with EquatableMixin {
   /// List<TextSpan> add further style and format to the text of the tooltip
   final List<TextSpan>? children;
   
-  ///showTooltipOnTopOfDot is true Tooltip is draw Top of the Dot
-  ///if showTooltipOnTopOfDot is false tooltip is draw down of the Dot
-  final bool showTooltipOnTopOfDot;
+  final TooltipMode tooltipMode;
   
   /// Used for equality check, see [EquatableMixin].
   @override
@@ -1875,4 +1873,8 @@ class LineChartDataTween extends Tween<LineChartData> {
   /// Lerps a [LineChartData] based on [t] value, check [Tween.lerp].
   @override
   LineChartData lerp(double t) => begin!.lerp(begin!, end!, t);
+}
+enum TooltipMode {
+  top,
+  bottom;
 }
