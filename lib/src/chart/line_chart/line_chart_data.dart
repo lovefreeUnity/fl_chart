@@ -1788,7 +1788,7 @@ class LineTooltipItem with EquatableMixin {
   /// List<TextSpan> add further style and format to the text of the tooltip
   final List<TextSpan>? children;
   
-  final TooltipMode tooltipMode;
+  final TooltipMode showTooltipMode;
   
   /// Used for equality check, see [EquatableMixin].
   @override
