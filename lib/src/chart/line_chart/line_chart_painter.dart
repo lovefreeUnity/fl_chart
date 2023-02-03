@@ -10,7 +10,7 @@ import 'package:fl_chart/src/extensions/text_align_extension.dart';
 import 'package:fl_chart/src/utils/canvas_wrapper.dart';
 import 'package:fl_chart/src/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:fl_chart/src/chart/line_chart/tooltip_mode';
+import 'package:fl_chart/src/chart/line_chart/tooltip_mode.dart';
 /// Paints [LineChartData] in the canvas, it can be used in a [CustomPainter]
 class LineChartPainter extends AxisChartPainter<LineChartData> {
   /// Paints [dataList] into canvas, it is the animating [LineChartData],
@@ -1141,7 +1141,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         continue;
       }
       
-      getTooltipMode = tooltipItem.tooltipMode;
+      getTooltipMode = tooltipItem.showTooltipMode;
 
       final span = TextSpan(
         style: Utils().getThemeAwareTextStyle(context, tooltipItem.textStyle),
