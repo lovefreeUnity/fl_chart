@@ -64,6 +64,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
   late Paint _imagePaint;
   late Paint _borderTouchTooltipPaint;
   late Paint _drawLineBetweenSpotAndTooltipPaint;
+  double dotHeight = 0;
   
   /// Paints [LineChartData] into the provided canvas.
   @override
@@ -348,7 +349,9 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         final xPercentInLine = (x / barXDelta) * 100;
         final painter =
             barData.dotData.getDotPainter(spot, xPercentInLine, barData, i);
-
+        dotHeight = painter
+            .getSize(spot)
+            .height;
         canvasWrapper.drawDot(painter, spot, Offset(x, y));
       }
     }
@@ -1284,8 +1287,10 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
 
     final drawLineBetweenSpotAndTooltip = Rect.fromPoints(
       Offset(mostTopOffset.dx, tooltipTopPosition),
-      mostTopOffset
-    );
+      Offset(mostTopOffset.dx,
+            getTooltipMode == TooltipMode.top
+            ? mostTopOffset.dy - dotHeight / 2
+            : mostTopOffset.dy + dotHeight / 2);
     
     canvasWrapper.drawRotated(
       size: rect.size,
