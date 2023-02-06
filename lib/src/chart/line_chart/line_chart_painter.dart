@@ -1299,7 +1299,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       angle: rotateAngle,
       drawCallback: () {
         canvasWrapper
-          ..drawLine(drawLineBetweenSpotAndTooltip[0],drawLineBetweenSpotAndTooltip[1],drawLineBetweenSpotAndTooltip,)
+          ..drawLine(drawLineBetweenSpotAndTooltip[0],drawLineBetweenSpotAndTooltip[1],_drawLineBetweenSpotAndTooltipPaint,)
           ..drawRRect(roundedRect, _bgTouchTooltipPaint)
           ..drawRRect(roundedRect, _borderTouchTooltipPaint);
       },
