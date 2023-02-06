@@ -344,6 +344,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         final xPercentInLine = (x / barXDelta) * 100;
         final painter =
             barData.dotData.getDotPainter(spot, xPercentInLine, barData, i);
+        print("[dot position] : ${Offset(x, y)}");
         dotHeight = painter
             .getSize(spot)
             .height;
