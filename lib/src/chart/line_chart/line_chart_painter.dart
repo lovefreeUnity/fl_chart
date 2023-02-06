@@ -59,7 +59,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
   late Paint _bgTouchTooltipPaint;
   late Paint _imagePaint;
   late Paint _borderTouchTooltipPaint;
-  double dotY = 0;
+  double circleBorderY = 0;
   
   /// Paints [LineChartData] into the provided canvas.
   @override
@@ -344,7 +344,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         final xPercentInLine = (x / barXDelta) * 100;
         final painter =
             barData.dotData.getDotPainter(spot, xPercentInLine, barData, i);
-        dotY = painter
+        circleBorderY = painter
             .getSize(spot)
             .height;
         canvasWrapper.drawDot(painter, spot, Offset(x, y));
@@ -1204,7 +1204,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
      }
      //툴팁이 그래프를 가리기 때문에 수정
     if(getTooltipMode == TooltipMode.bottom &&
-        mostTopOffset.dy + dotY / 2 > tooltipTopPosition ){
+        mostTopOffset.dy + circleBorderY / 2 > tooltipTopPosition ){
       getTooltipMode = TooltipMode.top;
       tooltipTopPosition = 0 + tooltipData.tooltipMargin;
     }
@@ -1288,11 +1288,11 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
    List<Offset> drawLineBetweenSpotAndTooltip = getTooltipMode == TooltipMode.top ?
     [
       Offset(mostTopOffset.dx, tooltipTopPosition + tooltipHeight / 2),
-      Offset(mostTopOffset.dx, mostTopOffset.dy - dotY / 2 - 2)
+      Offset(mostTopOffset.dx, mostTopOffset.dy - circleBorderY / 2 - 2)
     ] :
     [
       Offset(mostTopOffset.dx, tooltipTopPosition + tooltipHeight / 2),
-      Offset(mostTopOffset.dx, mostTopOffset.dy + dotY / 2 + 2)
+      Offset(mostTopOffset.dx, mostTopOffset.dy + circleBorderY / 2 + 2)
     ];
     
     canvasWrapper.drawRotated(
