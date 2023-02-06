@@ -1204,7 +1204,8 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
      }
     //툴팁이 그래프를 가리기 때문에 수정중
     if(getTooltipMode == TooltipMode.bottom ||
-        mostTopOffset.dy - dotHeight / 2 > tooltipTopPosition){
+         tooltipTopPosition > mostTopOffset.dy - dotHeight / 2){
+      getTooltipMode = TooltipMode.bottom
       tooltipTopPosition = 0 + tooltipData.tooltipMargin;
     }
 
