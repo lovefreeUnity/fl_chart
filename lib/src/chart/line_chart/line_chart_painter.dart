@@ -1288,11 +1288,11 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
    List<Offset> drawLineBetweenSpotAndTooltip = getTooltipMode == TooltipMode.top ?
     [
       Offset(mostTopOffset.dx, tooltipTopPosition + tooltipHeight / 2),
-      Offset(mostTopOffset.dx, mostTopOffset.dy - dotY / 2)
+      Offset(mostTopOffset.dx, mostTopOffset.dy - dotY / 2 - 2)
     ] :
     [
       Offset(mostTopOffset.dx, tooltipTopPosition + tooltipHeight / 2),
-      Offset(mostTopOffset.dx, mostTopOffset.dy + dotY / 2)
+      Offset(mostTopOffset.dx, mostTopOffset.dy + dotY / 2 + 2)
     ];
     
     canvasWrapper.drawRotated(
