@@ -49,6 +49,10 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       ..style = PaintingStyle.stroke
       ..color = Colors.transparent
       ..strokeWidth = 1.0;
+    _drawLineBetweenSpotAndTooltipPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..color = Color(0xFF000000)
+      ..strokeWidth = 1.0;
   }
   late Paint _barPaint;
   late Paint _barAreaPaint;
@@ -59,7 +63,8 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
   late Paint _bgTouchTooltipPaint;
   late Paint _imagePaint;
   late Paint _borderTouchTooltipPaint;
-
+  late Paint _drawLineBetweenSpotAndTooltipPaint;
+  
   /// Paints [LineChartData] into the provided canvas.
   @override
   void paint(
@@ -1277,6 +1282,11 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         ..strokeWidth = tooltipData.tooltipBorder.width;
     }
 
+    final drawLineBetweenSpotAndTooltip = Rect.fromPoints(
+      Offset(mostTopOffset.dx, tooltipTopPosition),
+      mostTopOffset
+    );
+    
     canvasWrapper.drawRotated(
       size: rect.size,
       rotationOffset: rectRotationOffset,
@@ -1284,6 +1294,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       angle: rotateAngle,
       drawCallback: () {
         canvasWrapper
+          ..drawRect(drawLineBetweenSpotAndTooltip, _drawLineBetweenSpotAndTooltipPaint)
           ..drawRRect(roundedRect, _bgTouchTooltipPaint)
           ..drawRRect(roundedRect, _borderTouchTooltipPaint);
       },
