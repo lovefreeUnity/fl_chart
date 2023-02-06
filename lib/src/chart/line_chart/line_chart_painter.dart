@@ -1285,7 +1285,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         ..strokeWidth = tooltipData.tooltipBorder.width;
     }
 
-    final drawLineBetweenSpotAndTooltip = [Offset(mostTopOffset.dx, tooltipTopPosition),
+    List<Offset> drawLineBetweenSpotAndTooltip = [Offset(mostTopOffset.dx, tooltipTopPosition),
       Offset(mostTopOffset.dx,
           getTooltipMode == TooltipMode.top
               ? mostTopOffset.dy - dotHeight / 2
