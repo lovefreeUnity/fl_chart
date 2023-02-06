@@ -51,7 +51,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       ..strokeWidth = 1.0;
     _drawLineBetweenSpotAndTooltipPaint = Paint()
       ..style = PaintingStyle.stroke
-      ..color = Color(0xFF000000)
+      ..color = Color(0xFFF2F2F2)
       ..strokeWidth = 1.0;
   }
   late Paint _barPaint;
