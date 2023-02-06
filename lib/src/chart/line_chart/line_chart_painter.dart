@@ -1285,12 +1285,12 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         ..strokeWidth = tooltipData.tooltipBorder.width;
     }
 
-    final drawLineBetweenSpotAndTooltip = Rect.fromPoints(
-      Offset(mostTopOffset.dx, tooltipTopPosition),
+    final drawLineBetweenSpotAndTooltip = [Offset(mostTopOffset.dx, tooltipTopPosition),
       Offset(mostTopOffset.dx,
-            getTooltipMode == TooltipMode.top
-            ? mostTopOffset.dy - dotHeight / 2
-            : mostTopOffset.dy + dotHeight / 2);
+          getTooltipMode == TooltipMode.top
+              ? mostTopOffset.dy - dotHeight / 2
+              : mostTopOffset.dy + dotHeight / 2)
+    ];
     
     canvasWrapper.drawRotated(
       size: rect.size,
@@ -1299,7 +1299,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       angle: rotateAngle,
       drawCallback: () {
         canvasWrapper
-          ..drawRect(drawLineBetweenSpotAndTooltip, _drawLineBetweenSpotAndTooltipPaint)
+          ..drawLine(drawLineBetweenSpotAndTooltip[0],drawLineBetweenSpotAndTooltip[1],drawLineBetweenSpotAndTooltip,)
           ..drawRRect(roundedRect, _bgTouchTooltipPaint)
           ..drawRRect(roundedRect, _borderTouchTooltipPaint);
       },
