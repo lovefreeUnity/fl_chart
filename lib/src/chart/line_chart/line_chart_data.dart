@@ -858,10 +858,12 @@ class FlDotCirclePainter extends FlDotPainter {
     double? radius,
     Color? strokeColor,
     double? strokeWidth,
+    Color? circleBorderColor
   })  : color = color ?? Colors.green,
         radius = radius ?? 4.0,
         strokeColor = strokeColor ?? Colors.green.darken(),
-        strokeWidth = strokeWidth ?? 1.0;
+        strokeWidth = strokeWidth ?? 1.0,
+        circleBorderColor = circleBorderColor ?? Colors.white;
 
   /// The fill color to use for the circle
   Color color;
@@ -874,7 +876,8 @@ class FlDotCirclePainter extends FlDotPainter {
 
   /// The stroke width to use for the circle
   double strokeWidth;
-
+  
+  Color circleBorderColor;
   /// Implementation of the parent class to draw the circle
   @override
   void draw(Canvas canvas, FlSpot spot, Offset offsetInCanvas) {
@@ -883,7 +886,7 @@ class FlDotCirclePainter extends FlDotPainter {
         offsetInCanvas,
         radius + (strokeWidth / 2),
         Paint()
-          ..color = strokeColor
+          ..color = circleBorderColor
           ..strokeWidth = strokeWidth
           ..style = PaintingStyle.stroke,
       );
