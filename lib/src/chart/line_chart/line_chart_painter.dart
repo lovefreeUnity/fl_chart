@@ -1200,9 +1200,13 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         tooltipTopPosition = 0 + tooltipData.tooltipMargin;
      } else {
         tooltipTopPosition =
-            mostBottomY - tooltipHeight - tooltipData.tooltipMargin;
+            mostBottomY - tooltipHeight - tooltipData.tooltipMargin;  
      }
-    
+    //툴팁이 그래프를 가리기 때문에 수정중
+    if(getTooltipMode == TooltipMode.bottom ||
+        mostTopOffset.dy - dotHeight / 2 > tooltipTopPosition){
+      tooltipTopPosition = 0 + tooltipData.tooltipMargin;
+    }
 
     /// draw the background rect with rounded radius
     var rect = Rect.fromLTWH(
