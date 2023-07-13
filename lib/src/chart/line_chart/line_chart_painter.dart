@@ -1286,11 +1286,11 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
             TooltipMode.top
         ? [
             Offset(mostTopOffset.dx, tooltipTopPosition + tooltipHeight / 2),
-            Offset(mostTopOffset.dx, mostTopOffset.dy - circleBorderY / 2)
+            Offset(mostTopOffset.dx, mostTopOffset.dy - circleBorderY)
           ]
         : [
             Offset(mostTopOffset.dx, tooltipTopPosition + tooltipHeight / 2),
-            Offset(mostTopOffset.dx, mostTopOffset.dy + circleBorderY / 2)
+            Offset(mostTopOffset.dx, mostTopOffset.dy + circleBorderY)
           ];
 
     canvasWrapper.drawRotated(
