@@ -10,7 +10,7 @@ import 'package:fl_chart/src/extensions/text_align_extension.dart';
 import 'package:fl_chart/src/utils/canvas_wrapper.dart';
 import 'package:fl_chart/src/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:fl_chart/src/chart/line_chart/tooltip_mode.dart';
+
 /// Paints [LineChartData] in the canvas, it can be used in a [CustomPainter]
 class LineChartPainter extends AxisChartPainter<LineChartData> {
   /// Paints [dataList] into canvas, it is the animating [LineChartData],
@@ -60,7 +60,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
   late Paint _imagePaint;
   late Paint _borderTouchTooltipPaint;
   double circleBorderY = 0;
-  
+
   /// Paints [LineChartData] into the provided canvas.
   @override
   void paint(
@@ -344,9 +344,6 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         final xPercentInLine = (x / barXDelta) * 100;
         final painter =
             barData.dotData.getDotPainter(spot, xPercentInLine, barData, i);
-        circleBorderY = painter
-            .getSize(spot)
-            .height;
         canvasWrapper.drawDot(painter, spot, Offset(x, y));
       }
     }
@@ -409,6 +406,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       /// If line end is inside the dot, adjust it so that it doesn't overlap with the dot.
       final dotMinY = touchedSpot.dy - dotHeight / 2;
       final dotMaxY = touchedSpot.dy + dotHeight / 2;
+      circleBorderY = dotMaxY;
       if (lineEnd.dy > dotMinY && lineEnd.dy < dotMaxY) {
         if (lineStart.dy < lineEnd.dy) {
           lineEnd -= Offset(0, lineEnd.dy - dotMinY);
@@ -1136,14 +1134,13 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       throw Exception('tooltipItems and touchedSpots size should be same');
     }
 
-    
     TooltipMode? getTooltipMode;
     for (var i = 0; i < showingTooltipSpots.showingSpots.length; i++) {
       final tooltipItem = tooltipItems[i];
       if (tooltipItem == null) {
         continue;
       }
-      
+
       getTooltipMode = tooltipItem.showTooltipMode;
 
       final span = TextSpan(
@@ -1188,23 +1185,23 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       getPixelX(showOnSpot.x, viewSize, holder),
       getPixelY(showOnSpot.y, viewSize, holder),
     );
-    
+
     final mostBottomY = viewSize.height;
 
     final tooltipWidth = biggerWidth + tooltipData.tooltipPadding.horizontal;
     final tooltipHeight = sumTextsHeight + tooltipData.tooltipPadding.vertical;
 
     double tooltipTopPosition;
-    
-     if (getTooltipMode == TooltipMode.top) {
-        tooltipTopPosition = 0 + tooltipData.tooltipMargin;
-     } else {
-        tooltipTopPosition =
-            mostBottomY - tooltipHeight - tooltipData.tooltipMargin;  
-     }
-     //툴팁이 그래프를 가리기 때문에 수정
-    if(getTooltipMode == TooltipMode.bottom &&
-        mostTopOffset.dy + circleBorderY / 2 > tooltipTopPosition ){
+
+    if (getTooltipMode == TooltipMode.top) {
+      tooltipTopPosition = 0 + tooltipData.tooltipMargin;
+    } else {
+      tooltipTopPosition =
+          mostBottomY - tooltipHeight - tooltipData.tooltipMargin;
+    }
+    //툴팁이 그래프를 가리기 때문에 수정
+    if (getTooltipMode == TooltipMode.bottom &&
+        mostTopOffset.dy + circleBorderY / 2 > tooltipTopPosition) {
       getTooltipMode = TooltipMode.top;
       tooltipTopPosition = 0 + tooltipData.tooltipMargin;
     }
@@ -1285,16 +1282,17 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         ..strokeWidth = tooltipData.tooltipBorder.width;
     }
 
-   List<Offset> drawLineBetweenSpotAndTooltip = getTooltipMode == TooltipMode.top ?
-    [
-      Offset(mostTopOffset.dx, tooltipTopPosition + tooltipHeight / 2),
-      Offset(mostTopOffset.dx, mostTopOffset.dy - circleBorderY / 2 - 2)
-    ] :
-    [
-      Offset(mostTopOffset.dx, tooltipTopPosition + tooltipHeight / 2),
-      Offset(mostTopOffset.dx, mostTopOffset.dy + circleBorderY / 2 + 2)
-    ];
-    
+    List<Offset> drawLineBetweenSpotAndTooltip = getTooltipMode ==
+            TooltipMode.top
+        ? [
+            Offset(mostTopOffset.dx, tooltipTopPosition + tooltipHeight / 2),
+            Offset(mostTopOffset.dx, mostTopOffset.dy - circleBorderY / 2)
+          ]
+        : [
+            Offset(mostTopOffset.dx, tooltipTopPosition + tooltipHeight / 2),
+            Offset(mostTopOffset.dx, mostTopOffset.dy + circleBorderY / 2)
+          ];
+
     canvasWrapper.drawRotated(
       size: rect.size,
       rotationOffset: rectRotationOffset,
@@ -1302,7 +1300,11 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       angle: rotateAngle,
       drawCallback: () {
         canvasWrapper
-          ..drawLine(drawLineBetweenSpotAndTooltip[0],drawLineBetweenSpotAndTooltip[1],_borderTouchTooltipPaint,)
+          ..drawLine(
+            drawLineBetweenSpotAndTooltip[0],
+            drawLineBetweenSpotAndTooltip[1],
+            _borderTouchTooltipPaint,
+          )
           ..drawRRect(roundedRect, _bgTouchTooltipPaint)
           ..drawRRect(roundedRect, _borderTouchTooltipPaint);
       },
